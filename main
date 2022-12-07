@@ -7,26 +7,23 @@ namespace Hex
     {
         static void Main()
         {
-            start:
-            try
+           do
             {
-                int value = int.Parse(Console.ReadLine());
-                int systemBase = 16;
-                string hex = Convert.ToString(value, systemBase);
-                hex = hex.ToUpper();
-                Console.WriteLine(hex);
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid format");
-                goto start;
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("Overloaded");
-                goto start;
-            }
-
+                short systemBase = 16;
+                bool value = int.TryParse(Console.ReadLine(), out int number);
+                if (value == true)
+                {
+                    string hex = Convert.ToString(number, systemBase);
+                    hex = hex.ToUpper();
+                    Console.WriteLine(hex);
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("err");
+                }
+            } while (true);
         }
     }
 }
